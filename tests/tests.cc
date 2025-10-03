@@ -101,4 +101,18 @@ TEST_CASE("negative deposit", "[ex-6]") {
   REQUIRE(leon_account.balance == 300.30);
 }
 
-TEST_CASE("ghost account", "[ex-6]") {}
+TEST_CASE("Example: Print Prompt Ledger", "[ex-3]") {
+  Atm atm;
+  atm.RegisterAccount(12345678, 1234, "Sam Sepiol", 300.30);
+  auto& transactions = atm.GetTransactions();
+  transactions[{12345678, 1234}].push_back(
+      "Withdrawal - Amount: $200.40, Updated Balance: $99.90");
+  transactions[{12345678, 1234}].push_back(
+      "Deposit - Amount: $40000.00, Updated Balance: $40099.90");
+  transactions[{12345678, 1234}].push_back(
+      "Deposit - Amount: $32000.00, Updated Balance: $72099.90");
+  atm.PrintLedger("./prompt.txt", 123, 12);
+  atm.PrintLedger("./prompt.txt", 12345678, 1234);
+
+  REQUIRE(CompareFiles("./ex-1.txt", "./prompt.txt"));
+}
