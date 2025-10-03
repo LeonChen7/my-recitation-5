@@ -78,7 +78,7 @@ TEST_CASE("Example: Print Prompt Ledger", "[ex-3]") {
 TEST_CASE("Example: Simple Deposit", "[ex-4]") {
   Atm atm;
   atm.RegisterAccount(1234, 123, "Leon Chen", 300.30);
-  atm.DepositCash(1234, 123, 20);
+  atm.DepositCash(1234, 123, 20.00);
   auto accounts = atm.GetAccounts();
 
   Account leom_account = accounts[{1234, 123}];
