@@ -87,6 +87,7 @@ TEST_CASE("negative balance", "[ex-5]") {
   Atm atm;
   atm.RegisterAccount(1234, 123, "Leon Chen", 300.30);
   atm.WithdrawCash(1234, 123, 500.50);
+  atm.WithdrawCash(123, 12, 300.30);
   auto accounts = atm.GetAccounts();
   Account leon_account = accounts[{1234, 123}];
   REQUIRE(leon_account.balance == 300.30);
@@ -96,12 +97,13 @@ TEST_CASE("negative deposit", "[ex-6]") {
   Atm atm;
   atm.RegisterAccount(1234, 123, "Leon Chen", 300.30);
   atm.DepositCash(1234, 123, -400.40);
+  atm.DepositCash(123, 12, 300.30);
   auto accounts = atm.GetAccounts();
   Account leon_account = accounts[{1234, 123}];
   REQUIRE(leon_account.balance == 300.30);
 }
 
-TEST_CASE("Example: Print Prompt Ledger", "[ex-3]") {
+TEST_CASE("Example: Print Prompt Ledger", "[ex-7]") {
   Atm atm;
   atm.RegisterAccount(12345678, 1234, "Sam Sepiol", 300.30);
   auto& transactions = atm.GetTransactions();
@@ -116,5 +118,3 @@ TEST_CASE("Example: Print Prompt Ledger", "[ex-3]") {
 
   REQUIRE(CompareFiles("./ex-1.txt", "./prompt.txt"));
 }
-
-TEST_CASE() {}
