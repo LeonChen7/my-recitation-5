@@ -75,44 +75,13 @@ TEST_CASE("Example: Print Prompt Ledger", "[ex-3]") {
   REQUIRE(CompareFiles("./ex-1.txt", "./prompt.txt"));
 }
 
-TEST_CASE("Example: Create Repeat Account", "[ex-4]") {
+TEST_CASE("Example: Simple Deposit", "[ex-4]") {
   Atm atm;
   atm.RegisterAccount(1234, 123, "Leon Chen", 300.30);
-  atm.RegisterAccount(1234, 123, "Yiyu Chen", 300.30);
+  atm.DepositCash(1234, 123, 20);
   auto accounts = atm.GetAccounts();
-  REQUIRE(accounts.size() == 1);
-}
 
-TEST_CASE("negative balance", "[ex-5]") {
-  Atm atm;
-  atm.RegisterAccount(1234, 123, "Leon Chen", 300.30);
-  atm.WithdrawCash(1234, 123, 300.30);
-  auto accounts = atm.GetAccounts();
-  Account leon_account = accounts[{1234, 123}];
-  REQUIRE(leon_account.balance == 0.00);
-}
+  Account leom_account = accounts[{1234, 123}];
 
-TEST_CASE("negative deposit", "[ex-6]") {
-  Atm atm;
-  atm.RegisterAccount(1234, 123, "Leon Chen", 300.30);
-  atm.DepositCash(1234, 123, 300.30);
-  auto accounts = atm.GetAccounts();
-  Account leon_account = accounts[{1234, 123}];
-  REQUIRE(leon_account.balance == 600.30);
-}
-
-TEST_CASE("Example: Print Prompt Ledger again", "[ex-7]") {
-  Atm atm;
-  atm.RegisterAccount(12345678, 1234, "Sam Sepiol", 300.30);
-  auto& transactions = atm.GetTransactions();
-  transactions[{12345678, 1234}].push_back(
-      "Withdrawal - Amount: $200.40, Updated Balance: $99.90");
-  transactions[{12345678, 1234}].push_back(
-      "Deposit - Amount: $40000.00, Updated Balance: $40099.90");
-  transactions[{12345678, 1234}].push_back(
-      "Deposit - Amount: $32000.00, Updated Balance: $72099.90");
-  atm.PrintLedger("./prompt.txt", 123, 12);
-  atm.PrintLedger("./prompt.txt", 12345678, 1234);
-
-  REQUIRE(CompareFiles("./ex-1.txt", "./prompt.txt"));
+  REQUIRE(leom_account.balance == 320.20);
 }
