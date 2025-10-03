@@ -103,3 +103,9 @@ TEST_CASE("Example : Simple Diposit", "[ex-6]") {
   Account sam_account = accounts[{12345678, 1234}];
   REQUIRE(sam_account.balance == 320.30);
 }
+
+TEST_CASE("Example : Ghost", "[ex-7]") {
+  Atm atm;
+  atm.RegisterAccount(12345678, 1234, "Sam Sepiol", 300.30);
+  REQUIRE_THROWS(atm.PrintLedger("./prompt.txt", 1234567, 123));
+}
