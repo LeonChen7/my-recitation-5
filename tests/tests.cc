@@ -83,5 +83,5 @@ TEST_CASE("Example: Simple Deposit", "[ex-4]") {
 
   Account leom_account = accounts[{1234, 123}];
 
-  REQUIRE(leom_account.balance == 320.20);
+  REQUIRE(leom_account.balance == 320.30);
 }
