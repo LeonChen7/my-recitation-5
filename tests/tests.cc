@@ -91,3 +91,14 @@ TEST_CASE("negative balance", "[ex-5]") {
   Account leon_account = accounts[{1234, 123}];
   REQUIRE(leon_account.balance == 300.30);
 }
+
+TEST_CASE("negative deposit", "[ex-6]") {
+  Atm atm;
+  atm.RegisterAccount(1234, 123, "Leon Chen", 300.30);
+  atm.DepositCash(1234, 123, -400.40);
+  auto accounts = atm.GetAccounts();
+  Account leon_account = accounts[{1234, 123}];
+  REQUIRE(leon_account.balance == 300.30);
+}
+
+TEST_CASE("ghost account", "[ex-6]") {}
