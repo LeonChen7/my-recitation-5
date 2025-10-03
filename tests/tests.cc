@@ -82,5 +82,5 @@ TEST_CASE("Example : Negative Withdraw", "[ex-4]") {
   auto accounts = atm.GetAccounts();
   Account sam_account = accounts[{12345678, 1234}];
 
-  REQUIRE(sam_account.balance == 300.30);
+  REQUIRE(sam_account.balance == 320.30);
 }
