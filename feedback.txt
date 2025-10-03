@@ -3,10 +3,11 @@ HINT: Review the function descriptions to ensure all of your test cases are accu
 
 2. Your test suite properly identified an incorrect solution!
 
-3. Your test suite properly identified an incorrect solution!
+3. Your test suite did not perform as expected.
+HINT: Try withdrawing a negative amount of cash.
 
 4. Your test suite properly identified an incorrect solution!
 
 5. Your test suite properly identified an incorrect solution!
 
-score: 4/5
+score: 3/5
