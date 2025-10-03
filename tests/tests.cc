@@ -82,3 +82,12 @@ TEST_CASE("Example: Create Repeat Account", "[ex-4]") {
   auto accounts = atm.GetAccounts();
   REQUIRE(accounts.size() == 1);
 }
+
+TEST_CASE("negative balance", "[ex-5]") {
+  Atm atm;
+  atm.RegisterAccount(1234, 123, "Leon Chen", 300.30);
+  atm.WithdrawCash(1234, 123, 500.50);
+  auto accounts = atm.GetAccounts();
+  Account leon_account = accounts[{1234, 123}];
+  REQUIRE(leon_account.balance == 300.30);
+}
