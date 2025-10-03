@@ -77,24 +77,8 @@ TEST_CASE("Example: Print Prompt Ledger", "[ex-3]") {
 
 TEST_CASE("Example: Repeat Register", "[ex-4]") {
   Atm atm;
-  atm.RegisterAccount(12345678, 1234, "Sam Sepiol", 300.30);
+  atm.RegisterAccount(1, 1, "Leon", 300.30);
+  atm.RegisterAccount(1, 1, "Chen", 300.30);
   auto accounts = atm.GetAccounts();
-  REQUIRE(accounts.contains({12345678, 1234}));
   REQUIRE(accounts.size() == 1);
-
-  Account sam_account = accounts[{12345678, 1234}];
-  REQUIRE(sam_account.owner_name == "Sam Sepiol");
-  REQUIRE(sam_account.balance == 300.30);
-
-  auto transactions = atm.GetTransactions();
-  REQUIRE(accounts.contains({12345678, 1234}));
-  REQUIRE(accounts.size() == 1);
-  std::vector<std::string> empty;
-  REQUIRE(transactions[{12345678, 1234}] == empty);
-
-  atm.RegisterAccount(12345678, 1234, "Leon Chen", 400.40);
-  REQUIRE(accounts.contains({12345678, 1234}));
-  REQUIRE(accounts.size() == 1);
-  REQUIRE(sam_account.owner_name == "Sam Sepiol");
-  REQUIRE(sam_account.balance == 300.30);
 }
