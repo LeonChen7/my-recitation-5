@@ -1,7 +1,8 @@
 1. Your test suite did not perform as expected.
 HINT: Review the function descriptions to ensure all of your test cases are accurate.
 
-2. Your test suite properly identified an incorrect solution!
+2. Your test suite did not perform as expected.
+HINT: What should happen if we register an account that already exists?
 
 3. Your test suite properly identified an incorrect solution!
 
@@ -9,4 +10,4 @@ HINT: Review the function descriptions to ensure all of your test cases are accu
 
 5. Your test suite properly identified an incorrect solution!
 
-score: 4/5
+score: 3/5
