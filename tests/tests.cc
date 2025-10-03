@@ -36,6 +36,7 @@ bool CompareFiles(const std::string& p1, const std::string& p2) {
 TEST_CASE("Example: Create a new account", "[ex-1]") {
   Atm atm;
   atm.RegisterAccount(12345678, 1234, "Sam Sepiol", 300.30);
+  atm.RegisterAccount(12345678, 1234, "Leon", 500.50);
   auto accounts = atm.GetAccounts();
   REQUIRE(accounts.contains({12345678, 1234}));
   REQUIRE(accounts.size() == 1);
@@ -55,6 +56,7 @@ TEST_CASE("Example: Simple widthdraw", "[ex-2]") {
   Atm atm;
   atm.RegisterAccount(12345678, 1234, "Sam Sepiol", 300.30);
   atm.WithdrawCash(12345678, 1234, 20);
+  atm.WithdrawCash(12345678, 1234, -30);
   auto accounts = atm.GetAccounts();
   Account sam_account = accounts[{12345678, 1234}];
 
@@ -72,14 +74,6 @@ TEST_CASE("Example: Print Prompt Ledger", "[ex-3]") {
   transactions[{12345678, 1234}].push_back(
       "Deposit - Amount: $32000.00, Updated Balance: $72099.90");
   atm.PrintLedger("./prompt.txt", 12345678, 1234);
+  atm.PrintLedger("./prompt.txt", 123, 12);
   REQUIRE(CompareFiles("./ex-1.txt", "./prompt.txt"));
-}
-
-TEST_CASE("Example: Repeat Register", "[ex-4]") {
-  Atm atm;
-  atm.RegisterAccount(12345678, 1234, "Sam Sepiol", 300.30);
-  atm.RegisterAccount(12345678, 1234, "Leon Chen", 300.30);
-  auto accounts = atm.GetAccounts();
-  REQUIRE(accounts.contains({12345678, 1234}));
-  REQUIRE(accounts.size() == 1);
 }
