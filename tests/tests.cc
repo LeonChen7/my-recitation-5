@@ -104,7 +104,7 @@ TEST_CASE("negative deposit", "[ex-6]") {
   REQUIRE(leon_account.balance == 300.30);
 }
 
-TEST_CASE("Example: Print Prompt Ledger", "[ex-7]") {
+TEST_CASE("Example: Print Prompt Ledger again", "[ex-7]") {
   Atm atm;
   atm.RegisterAccount(12345678, 1234, "Sam Sepiol", 300.30);
   auto& transactions = atm.GetTransactions();
@@ -119,5 +119,3 @@ TEST_CASE("Example: Print Prompt Ledger", "[ex-7]") {
 
   REQUIRE(CompareFiles("./ex-1.txt", "./prompt.txt"));
 }
-
-TEST_CASE() {}
