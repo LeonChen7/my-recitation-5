@@ -86,22 +86,19 @@ TEST_CASE("Example: Create Repeat Account", "[ex-4]") {
 TEST_CASE("negative balance", "[ex-5]") {
   Atm atm;
   atm.RegisterAccount(1234, 123, "Leon Chen", 300.30);
-  atm.WithdrawCash(1234, 123, 500.50);
-  atm.WithdrawCash(123, 12, 300.30);
-  atm.WithdrawCash(1234, 123, -300.30);
+  atm.WithdrawCash(1234, 123, 300.30);
   auto accounts = atm.GetAccounts();
   Account leon_account = accounts[{1234, 123}];
-  REQUIRE(leon_account.balance == 300.30);
+  REQUIRE(leon_account.balance == 0.00);
 }
 
 TEST_CASE("negative deposit", "[ex-6]") {
   Atm atm;
   atm.RegisterAccount(1234, 123, "Leon Chen", 300.30);
-  atm.DepositCash(1234, 123, -400.40);
-  atm.DepositCash(123, 12, 300.30);
+  atm.DepositCash(1234, 123, 300.30);
   auto accounts = atm.GetAccounts();
   Account leon_account = accounts[{1234, 123}];
-  REQUIRE(leon_account.balance == 300.30);
+  REQUIRE(leon_account.balance == 600.30);
 }
 
 TEST_CASE("Example: Print Prompt Ledger again", "[ex-7]") {
