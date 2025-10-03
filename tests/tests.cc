@@ -74,3 +74,11 @@ TEST_CASE("Example: Print Prompt Ledger", "[ex-3]") {
   atm.PrintLedger("./prompt.txt", 12345678, 1234);
   REQUIRE(CompareFiles("./ex-1.txt", "./prompt.txt"));
 }
+
+TEST_CASE("Example: Create Repeat Account", "[ex-4]") {
+  Atm atm;
+  atm.RegisterAccount(1234, 123, "Leon Chen", 300.30);
+  atm.RegisterAccount(1234, 123, "Yiyu Chen", 300.30);
+  auto accounts = atm.GetAccounts();
+  REQUIRE(accounts.size() == 1);
+}
